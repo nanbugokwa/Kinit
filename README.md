@@ -3,6 +3,8 @@
 A minimal, secure, and modular init system written in Rust.  
 Supports servers, desktops, encrypted disks (LUKS), TPM, cgroups, recovery mode, and more.
 
+WRITTEN BY Qwen AI, not tested
+
 ## Features
 - PID 1 compliant (reaps zombies)
 - Service dependencies & auto-restart
