@@ -1,4 +1,4 @@
-# Kinit
+# qinit
 
 A minimal, secure, and modular init system written in Rust.  
 Supports servers, desktops, encrypted disks (LUKS), TPM, cgroups, recovery mode, and more.
