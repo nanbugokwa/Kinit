@@ -1,6 +1,5 @@
 use std::fs;
-use nix::sys::stat::Mode;
-use nix::unistd::{mknod, MknodFlags};
+use nix::sys::stat::{Mode, SFlag, makedev, mknod};
 
 pub fn populate_dev() -> Result<(), Box<dyn std::error::Error>> {
     fs::create_dir_all("/dev")?;
@@ -15,6 +14,7 @@ pub fn populate_dev() -> Result<(), Box<dyn std::error::Error>> {
 }
 
 fn create_dev(name: &str, major: u64, minor: u64, mode: u32) -> nix::Result<()> {
-    let dev = nix::sys::stat::makedev(major, minor);
-    mknod(&format!("/dev/{}", name), MknodFlags::S_IFCHR, Mode::from_bits(mode).unwrap(), dev)
+    let dev = makedev(major, minor);
+    let path = format!("/dev/{}", name);
+    mknod(path.as_str(), SFlag::S_IFCHR, Mode::from_bits(mode).unwrap(), dev)
 }
